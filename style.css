@@ -29,15 +29,33 @@ header {
     padding: 8px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
 }
 
-header>img:nth-of-type(1) {
+header>section:nth-of-type(1) {
     width: 20%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+header>section:nth-of-type(2) {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+header>section:nth-of-type(3) {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header>section>img:nth-of-type(1) {
+    width: 50%;
     flex-grow: 0;
 }
-
-
 
 footer {
     width: 100%;
@@ -54,7 +72,24 @@ footer>span {
 
     /* For tablets: */
     header>img:nth-of-type(1) {
-        width: 15%;
+        width: 40%;
+    }
+
+    header>section:nth-of-type(1) {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    header>section:nth-of-type(2) {
+        display: flex;
+        justify-content: center;
+    }
+
+
+
+    header>section:nth-of-type(3) {
+        display: flex;
+        justify-content: flex-end;
     }
 }
 
@@ -64,6 +99,23 @@ footer>span {
 
     /* For desktop: */
     header>img:nth-of-type(1) {
-        width: 10%;
+        width: 30%;
+    }
+
+    header>section:nth-of-type(1) {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    header>section:nth-of-type(2) {
+        display: flex;
+        justify-content: center;
+    }
+
+
+
+    header>section:nth-of-type(3) {
+        display: flex;
+        justify-content: flex-end;
     }
 }
