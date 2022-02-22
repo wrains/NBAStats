@@ -10,7 +10,8 @@ fetch("https://www.balldontlie.io/api/v1/players", requestOptions)
     container.innerHTML = ``;
 
     console.log(result);
-    let resp = document.createElement('section').innerHTML = `${result}`;
+    let resp = document.createElement('section');
+    resp.innerHTML = `<section>${result}</section>`;
     document.querySelector('#container').appendChild(resp);
 
 
