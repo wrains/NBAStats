@@ -18,7 +18,7 @@ main {
 }
 
 main {
-    height: 60vh;
+    height: 80vh;
 }
 
 header {
@@ -29,6 +29,7 @@ header {
     padding: 8px;
     display: flex;
     align-items: center;
+    height: 60px;
 
 }
 
@@ -57,6 +58,10 @@ header>section>img:nth-of-type(1) {
     flex-grow: 0;
 }
 
+#spacer {
+    height: 65px;
+}
+
 footer {
     width: 100%;
     text-align: right;
@@ -71,7 +76,7 @@ footer>span {
 @media only screen and (min-width: 600px) {
 
     /* For tablets: */
-    header>img:nth-of-type(1) {
+    header>section>img:nth-of-type(1) {
         width: 40%;
     }
 
@@ -98,7 +103,7 @@ footer>span {
 @media only screen and (min-width: 768px) {
 
     /* For desktop: */
-    header>img:nth-of-type(1) {
+    header>section>img:nth-of-type(1) {
         width: 30%;
     }
 
