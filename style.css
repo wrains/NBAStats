@@ -11,6 +11,10 @@ h1 {
     font-size: large;
 }
 
+h2 {
+    font-size: medium;
+}
+
 body,
 main {
     width: 100%;
@@ -60,6 +64,16 @@ header>section>img:nth-of-type(1) {
 
 #spacer {
     height: 65px;
+}
+
+.player-div {
+    border: 1px solid #f1f1f1;
+    padding: 15px;
+    display: flex;
+}
+
+.player-div>h2 {
+    display: inline;
 }
 
 footer {

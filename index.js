@@ -3,10 +3,16 @@ const requestOptions = {
   redirect: 'follow'
 };
 
+//GET request to get the players data
+
 fetch("https://www.balldontlie.io/api/v1/players", requestOptions)
   .then(response => response.json())
   .then(result => {
+
+    //hide footer
     document.querySelector("footer").style.visibility="hidden";
+
+    //query select container
     let container = document.querySelector('main');
     container.style.height = "";
 
@@ -15,13 +21,13 @@ fetch("https://www.balldontlie.io/api/v1/players", requestOptions)
     result.data.forEach(player => {
 
       let resp = document.createElement('section');
-      resp.innerHTML = `<section class= "player-divs">${player.first_name} ${player.last_name}</section>`;
+      resp.classList.add("player-div")
+      resp.innerHTML = `<h2>🏀 ${player.first_name} ${player.last_name} </h2>
+
+      `;
       container.appendChild(resp);
-      // const players = [];
-      // players.map(player);
+
     });
-
-
 
 
 })
