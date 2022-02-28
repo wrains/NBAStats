@@ -22,8 +22,10 @@ fetch("https://www.balldontlie.io/api/v1/players", requestOptions)
 
       let resp = document.createElement('section');
       resp.classList.add("player-div")
-      resp.innerHTML = `<h2>🏀 ${player.first_name} ${player.last_name} </h2>
-
+      resp.innerHTML =
+      `
+      <h2>🏀 ${player.first_name} ${player.last_name} </h2>
+      <p>  </p>
       `;
       container.appendChild(resp);
 
