@@ -1,36 +1,45 @@
-const requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
 
 //GET request to get the players data
+let searchBar=document.querySelector("#search-bar");
 
-fetch("https://www.balldontlie.io/api/v1/players", requestOptions)
-  .then(response => response.json())
-  .then(result => {
+searchBar.addEventListener("submit",function (e) {
 
-    //hide footer
-    document.querySelector("footer").style.visibility="hidden";
+    document.querySelector('main').innerHTML=``;
 
-    //query select container
-    let container = document.querySelector('main');
-    container.style.height = "";
-
-    console.log(result,'result log');
-    console.log(result.data,'result.data log');
-    result.data.forEach(player => {
-
-      let resp = document.createElement('section');
-      resp.classList.add("player-div")
-      resp.innerHTML =
-      `
-      <h2>🏀 ${player.first_name} ${player.last_name} </h2>
-      <p>  </p>
-      `;
-      container.appendChild(resp);
-
-    });
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
 
 
-})
-  .catch(error => console.log('error', error));
+    fetch("https://www.balldontlie.io/api/v1/players", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+
+        //hide footer
+        document.querySelector("footer").style.visibility="hidden";
+
+        //query select container
+        let container = document.querySelector('main');
+        container.style.height = "";
+
+        console.log(result,'result log');
+        console.log(result.data,'result.data log');
+        result.data.forEach(player => {
+
+          let resp = document.createElement('section');
+          resp.classList.add("player-div")
+          resp.innerHTML =
+          `
+          <h2>🏀 ${player.first_name} ${player.last_name} </h2>
+          <p>  </p>
+          `;
+          container.appendChild(resp);
+
+        });
+
+
+    })
+      .catch(error => console.log('error', error));
+    e.preventDefault();
+  })
