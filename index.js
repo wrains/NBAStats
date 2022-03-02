@@ -1,17 +1,18 @@
 
-//GET request to get the players data
+//declare searchbar element using DOM
 let searchBar=document.querySelector("#search-bar");
 
+//add event listener on submit
 searchBar.addEventListener("submit",function (e) {
-
+    //clear container element
     document.querySelector('main').innerHTML=``;
-
+    //set request options
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
     };
 
-
+    //GET request to get the players data
     fetch("https://www.balldontlie.io/api/v1/players", requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -21,12 +22,12 @@ searchBar.addEventListener("submit",function (e) {
 
         //query select container
         let container = document.querySelector('main');
-        container.style.height = "";
 
         console.log(result,'result log');
         console.log(result.data,'result.data log');
+        //loop through player in response with forEach
         result.data.forEach(player => {
-
+          //create section for each player
           let resp = document.createElement('section');
           resp.classList.add("player-div")
           resp.innerHTML =
@@ -41,5 +42,6 @@ searchBar.addEventListener("submit",function (e) {
 
     })
       .catch(error => console.log('error', error));
-    e.preventDefault();
+      //prevent page reload on submit of search bar
+      e.preventDefault();
   })
