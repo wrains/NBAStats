@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-
 * {
     margin: 0;
     box-sizing: border-box;
@@ -48,8 +47,6 @@ header>section:nth-of-type(2) {
     display: flex;
     justify-content: center;
 }
-
-
 
 header>section:nth-of-type(3) {
     width: 20%;
@@ -121,15 +118,11 @@ form {
         justify-content: center;
     }
 
-
-
     header>section:nth-of-type(3) {
         display: flex;
         justify-content: flex-end;
     }
 }
-
-
 
 @media only screen and (min-width: 768px) {
 
@@ -147,8 +140,6 @@ form {
         display: flex;
         justify-content: center;
     }
-
-
 
     header>section:nth-of-type(3) {
         display: flex;

@@ -102,15 +102,20 @@ searchBar.addEventListener("submit",function (e) {
           };
           let yearValue=document.getElementById('year-input').value;
 
+          //GET API request to get specific player season averages
           fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${yearValue}&player_ids[]=${player.id}`, requestOptions)
             .then(response => response.json())
             .then(resultInner2 => {
               console.log(resultInner2,'Results Inner 2 Log')
               //create section for each player
               let resp = document.createElement('section');
+
+              //setting a class for the sections being added to assign styling from the css file
               resp.classList.add("player-div")
+              //setting some css styling in this file for the various elements rendered
               resp.style.cssText= `display:flex;justify-content:space-around;
               flex-wrap:wrap;align-items:center;`
+              //set innner html or resp variable with template strings on data from API
               resp.innerHTML =
               `
               <h2>🏀 ${player.first_name} ${player.last_name} </h2>
@@ -125,13 +130,20 @@ searchBar.addEventListener("submit",function (e) {
               <p>  ${Math.round(resultInner2.data[0].fg3_pct*100)}% 3 pt</p>
               <p>  ${Math.round(resultInner2.data[0].ft_pct*100)}% ft</p>
               `;
+
+              //append to container
               container.appendChild(resp);
+
+              //INSERT HERE API GET REQUEST TO GOOGLE API FOR GOOGLE IMAGES FOR FOR RESULT FOR FIRST NAME AND LAST NAME OF EACH PLAYER + 'MEME'
+
               })
+              //error catach for inner API Call
             .catch(error => console.log('error', error))
         });
 
 
     })
+      //Need to change this to print no results found on the page
       .catch(error => console.log('error', error));
       //prevent page reload on submit of search bar
       e.preventDefault();
