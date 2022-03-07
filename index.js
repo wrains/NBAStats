@@ -17,30 +17,30 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=Tim Duncan`, requestOpti
     //query select container
     let container = document.querySelector('main');
 
-    console.log(result,'result log');
-    console.log(result.data,'result.data log');
+    // console.log(result,'result log');
+    // console.log(result.data,'result.data log');
       //create section for each player
       let resp = document.createElement('section');
       resp.classList.add("player-div")
       resp.style.cssText= `display:flex;justify-content:space-around;
-      flex-wrap:wrap;`
+      flex-wrap:wrap;align-items:center;`
 
       const requestOptions = {
         method: 'GET',
         redirect: 'follow'
       };
       const timD = result.data;
-      console.log(timD[0],'timD log');
+      // console.log(timD[0],'timD log');
       let timIdArray = [];
-      console.log(timIdArray,'timIdArray1 log');
+      // console.log(timIdArray,'timIdArray1 log');
       timIdArray.push(timD[0].id);
-      console.log(timIdArray,'timIdArray2 log');
-      console.log(timIdArray[0],'timIdArray2[0] log');
+      // console.log(timIdArray,'timIdArray2 log');
+      // console.log(timIdArray[0],'timIdArray2[0] log');
       fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2002&player_ids[]=${timIdArray[0]}`, requestOptions)
         .then(response => response.json())
         .then(resultInner => {
 
-          console.log(resultInner,'resultInner log')
+          // console.log(resultInner,'resultInner log')
           resp.innerHTML =
           `
           <h2> ${result.data[0].first_name} ${result.data[0].last_name} </h2>
@@ -79,7 +79,9 @@ searchBar.addEventListener("submit",function (e) {
     //read in the value inputted in the search
     let searchValue=document.getElementById('search-input').value;
 
+
     //GET request to get the players data
+    console.log(searchValue,yearValue,"search and year value log")
     fetch(`https://www.balldontlie.io/api/v1/players?search=${searchValue}`, requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -90,20 +92,42 @@ searchBar.addEventListener("submit",function (e) {
         //query select container
         let container = document.querySelector('main');
 
-        console.log(result,'result log');
-        console.log(result.data,'result.data log');
+        // console.log(result,'result log');
+        // console.log(result.data,'result.data log');
         //loop through player in response with forEach
         result.data.forEach(player => {
-          //create section for each player
-          let resp = document.createElement('section');
-          resp.classList.add("player-div")
-          resp.innerHTML =
-          `
-          <h2>🏀 ${player.first_name} ${player.last_name} </h2>
-          <p>  </p>
-          `;
-          container.appendChild(resp);
+          const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+          let yearValue=document.getElementById('year-input').value;
 
+          fetch(`https://www.balldontlie.io/api/v1/season_averages?season=${yearValue}&player_ids[]=${player.id}`, requestOptions)
+            .then(response => response.json())
+            .then(resultInner2 => {
+              console.log(resultInner2,'Results Inner 2 Log')
+              //create section for each player
+              let resp = document.createElement('section');
+              resp.classList.add("player-div")
+              resp.style.cssText= `display:flex;justify-content:space-around;
+              flex-wrap:wrap;align-items:center;`
+              resp.innerHTML =
+              `
+              <h2>🏀 ${player.first_name} ${player.last_name} </h2>
+              <p> 📆 Year 2002 </p>
+              <p> 🏀  ${resultInner2.data[0].pts.toFixed(1)} pts</p>
+              <p> 🏀  ${resultInner2.data[0].reb.toFixed(1)} reb</p>
+              <p> 🏀  ${resultInner2.data[0].stl.toFixed(1)} stl</p>
+              <p> 🏀  ${resultInner2.data[0].stl.toFixed(1)} blk</p>
+              <p> 🏀  ${resultInner2.data[0].turnover.toFixed(1)} turnovers</p>
+              <h3>Percentages</h3>
+              <p>  ${Math.round(resultInner2.data[0].fg_pct*100)}% fg</p>
+              <p>  ${Math.round(resultInner2.data[0].fg3_pct*100)}% 3 pt</p>
+              <p>  ${Math.round(resultInner2.data[0].ft_pct*100)}% ft</p>
+              `;
+              container.appendChild(resp);
+              })
+            .catch(error => console.log('error', error))
         });
 
 
