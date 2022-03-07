@@ -43,13 +43,13 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=Tim Duncan`, requestOpti
           // console.log(resultInner,'resultInner log')
           resp.innerHTML =
           `
-          <h2> ${result.data[0].first_name} ${result.data[0].last_name} </h2>
+          <h2>🏀 ${result.data[0].first_name} ${result.data[0].last_name} </h2>
           <p> 📆 Year 2002 </p>
-          <p> 🏀  ${resultInner.data[0].pts.toFixed(1)} pts</p>
-          <p> 🏀  ${resultInner.data[0].reb.toFixed(1)} reb</p>
-          <p> 🏀  ${resultInner.data[0].stl.toFixed(1)} stl</p>
-          <p> 🏀  ${resultInner.data[0].stl.toFixed(1)} blk</p>
-          <p> 🏀  ${resultInner.data[0].turnover.toFixed(1)} turnovers</p>
+          <p> ⚡️  ${resultInner.data[0].pts.toFixed(1)} pts</p>
+          <p> ⚡️  ${resultInner.data[0].reb.toFixed(1)} reb</p>
+          <p> ⚡️  ${resultInner.data[0].stl.toFixed(1)} stl</p>
+          <p> ⚡️  ${resultInner.data[0].stl.toFixed(1)} blk</p>
+          <p> ⚡️  ${resultInner.data[0].turnover.toFixed(1)} turnovers</p>
           <h3>Percentages</h3>
           <p>  ${Math.round(resultInner.data[0].fg_pct*100)}% fg</p>
           <p>  ${Math.round(resultInner.data[0].fg3_pct*100)}% 3 pt</p>
@@ -114,12 +114,12 @@ searchBar.addEventListener("submit",function (e) {
               resp.innerHTML =
               `
               <h2>🏀 ${player.first_name} ${player.last_name} </h2>
-              <p> 📆 Year 2002 </p>
-              <p> 🏀  ${resultInner2.data[0].pts.toFixed(1)} pts</p>
-              <p> 🏀  ${resultInner2.data[0].reb.toFixed(1)} reb</p>
-              <p> 🏀  ${resultInner2.data[0].stl.toFixed(1)} stl</p>
-              <p> 🏀  ${resultInner2.data[0].stl.toFixed(1)} blk</p>
-              <p> 🏀  ${resultInner2.data[0].turnover.toFixed(1)} turnovers</p>
+              <p> 📆 Year ${yearValue} </p>
+              <p> ⚡️  ${resultInner2.data[0].pts.toFixed(1)} pts</p>
+              <p> ⚡️ ${resultInner2.data[0].reb.toFixed(1)} reb</p>
+              <p> ⚡️ ${resultInner2.data[0].stl.toFixed(1)} stl</p>
+              <p> ⚡️ ${resultInner2.data[0].stl.toFixed(1)} blk</p>
+              <p> ⚡️ ${resultInner2.data[0].turnover.toFixed(1)} turnovers</p>
               <h3>Percentages</h3>
               <p>  ${Math.round(resultInner2.data[0].fg_pct*100)}% fg</p>
               <p>  ${Math.round(resultInner2.data[0].fg3_pct*100)}% 3 pt</p>
