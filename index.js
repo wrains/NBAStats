@@ -4,6 +4,7 @@ const requestOptions = {
 };
 //read in the value inputted in the search
 let searchValue=document.getElementById('search-input').value;
+let yearValue=document.getElementById('year-input').value;
 
 //GET request to get Tim Duncan - NEW START OF FILE
 fetch(`https://www.balldontlie.io/api/v1/players?search=Tim Duncan`, requestOptions)
@@ -21,6 +22,8 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=Tim Duncan`, requestOpti
       //create section for each player
       let resp = document.createElement('section');
       resp.classList.add("player-div")
+      resp.style.cssText= `display:flex;justify-content:space-around;
+      flex-wrap:wrap;`
 
       const requestOptions = {
         method: 'GET',
@@ -32,15 +35,25 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=Tim Duncan`, requestOpti
       console.log(timIdArray,'timIdArray1 log');
       timIdArray.push(timD[0].id);
       console.log(timIdArray,'timIdArray2 log');
-
-      fetch(`https://www.balldontlie.io/api/v1/stats?player_ids=[${timD[0].id}]`, requestOptions)
+      console.log(timIdArray[0],'timIdArray2[0] log');
+      fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2002&player_ids[]=${timIdArray[0]}`, requestOptions)
         .then(response => response.json())
         .then(resultInner => {
 
+          console.log(resultInner,'resultInner log')
           resp.innerHTML =
           `
-          <h2>🏀 ${result.data[0].first_name} ${result.data[0].last_name} </h2>
-          <p>  </p>
+          <h2> ${result.data[0].first_name} ${result.data[0].last_name} </h2>
+          <p> 📆 Year 2002 </p>
+          <p> 🏀  ${resultInner.data[0].pts.toFixed(1)} pts</p>
+          <p> 🏀  ${resultInner.data[0].reb.toFixed(1)} reb</p>
+          <p> 🏀  ${resultInner.data[0].stl.toFixed(1)} stl</p>
+          <p> 🏀  ${resultInner.data[0].stl.toFixed(1)} blk</p>
+          <p> 🏀  ${resultInner.data[0].turnover.toFixed(1)} turnovers</p>
+          <h3>Percentages</h3>
+          <p>  ${Math.round(resultInner.data[0].fg_pct*100)}% fg</p>
+          <p>  ${Math.round(resultInner.data[0].fg3_pct*100)}% 3 pt</p>
+          <p>  ${Math.round(resultInner.data[0].ft_pct*100)}% ft</p>
           `;
           container.appendChild(resp);
 
