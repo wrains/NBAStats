@@ -39,7 +39,7 @@ fetch(`https://www.balldontlie.io/api/v1/players?search=Tim Duncan`, requestOpti
 
           resp.innerHTML =
           `
-          <h2>🏀 ${result.first_name} ${result.last_name} </h2>
+          <h2>🏀 ${result.data[0].first_name} ${result.data[0].last_name} </h2>
           <p>  </p>
           `;
           container.appendChild(resp);
